@@ -1,14 +1,14 @@
 const StudentModel = require("../models/student-model")
 
-const addStudent= (req, res) => {
-    // console.log("first : ", { reg_no: req.body.reg_no, name: req.body.name, mark: req.body.mark, dob: req.body.dob });
-    // console.log("second : ", req.body);
-    let data = StudentModel.create(req.body)
-    res.json({
-        success: true,
-        message: "Added student successfully"
-    })
-}
+const addStudent= async (req, res) => {
+    try {
+        let data =  await StudentModel.create(req.body)
+        res.send(data)
+    } catch (error) {
+        res.json("Error")
+    }
+    }
+   
 
 const getAllStudents=async (req, res) => {
     let allStudents = await StudentModel.find()
